@@ -43,6 +43,24 @@ class User {
     }
   }
 
+  async findByEmail(email) {
+    try {
+      var result = await knex
+        .select(['id', 'name', 'email', 'role'])
+        .where({ email })
+        .table('users');
+
+      if (result.length > 0) {
+        return result[0];
+      } else {
+        return undefined;
+      }
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
   async findEmail(email) {
     try {
       var resultado = await knex.select().from('users').where({ email });
