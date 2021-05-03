@@ -47,7 +47,7 @@ class User {
   async findByEmail(email) {
     try {
       var result = await knex
-        .select(['id', 'name', 'email', 'role'])
+        .select(['id', 'name', 'email', 'password', 'role'])
         .where({ email })
         .table('users');
 
