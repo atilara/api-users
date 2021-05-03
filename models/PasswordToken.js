@@ -27,6 +27,36 @@ class PasswordToken {
       };
     }
   }
+
+  async validate(token) {
+    try {
+      var result = await knex
+        .select()
+        .where({ token })
+        .table('password_tokens');
+      if (result.length > 0) {
+        var tokenFound = result[0];
+        if (tokenFound.used) {
+          return { status: false };
+        } else {
+          return { status: true, token: tokenFound };
+        }
+      } else {
+        return { status: false };
+      }
+    } catch (error) {
+      console.log(error);
+      return { status: false };
+    }
+  }
+
+  async setUsed(token) {
+    try {
+      await knex.update({ used: 1 }).where({ token }).table('password_tokens');
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 module.exports = new PasswordToken();
