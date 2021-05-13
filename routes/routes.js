@@ -7,6 +7,8 @@ var AdminAuth = require('../middleware/AdminAuth');
 
 router.get('/', HomeController.index);
 
+router.post('/validate', AdminAuth, HomeController.validate);
+
 router.post('/user', UserController.create);
 
 router.get('/user', UserController.index);
