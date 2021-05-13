@@ -5,13 +5,13 @@ var UserController = require('../controllers/UserController');
 
 var AdminAuth = require('../middleware/AdminAuth');
 
-router.get('/', AdminAuth, HomeController.index);
+router.get('/', HomeController.index);
 
-router.post('/user', AdminAuth, UserController.create);
+router.post('/user', UserController.create);
 
-router.get('/user', AdminAuth, UserController.index);
+router.get('/user', UserController.index);
 
-router.get('/user/:id', AdminAuth, UserController.findUser);
+router.get('/user/:id', UserController.findUser);
 
 router.put('/user', AdminAuth, UserController.update);
 
@@ -21,6 +21,6 @@ router.post('/recoverpassword', AdminAuth, UserController.recoverPassword);
 
 router.post('/changepassword', AdminAuth, UserController.changePassword);
 
-router.post('/login', AdminAuth, UserController.login);
+router.post('/login', UserController.login);
 
 module.exports = router;

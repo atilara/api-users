@@ -13,6 +13,6 @@ app.use(bodyParser.json());
 
 app.use('/', router);
 
-app.listen(8686, () => {
+app.listen(5500, () => {
   console.log('Servidor rodando');
 });
